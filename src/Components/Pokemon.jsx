@@ -1,22 +1,39 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
+import '../App.css';
+import Pokemon from '../Services/Pokemon';
+import React, { useEffect, useState } from 'react';
+
+const Pokemons = ({pokemon}) => {
+  const [currentPokemon, setCurrentPokemon] = useState({});
 
 
-  function pokemon ({pokemon}) {
+  const fetchPokemonById = async () => {
+      try {
+          const response = await Pokemon.GetPokemonById(pokemon.url.substring(41).replaceAll("/", ""))
+          setCurrentPokemon(response.data)
+
+      } catch (e) {
+          console.log(e)
+      }
+  }
+
+  useEffect(() => {
+      fetchPokemonById()
+  }, []);
+
     return (
-      <Card className={'col-3'}>
-        <Card.Img variant="top" src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+pokemon.id+".png"}/>
+      <div id='Cards'>
+      <Card id="card"className={'col-3'}>
+        <Card.Title class="row justify-content-center">{currentPokemon.names != undefined && currentPokemon.names[4].name.charAt(0).toUpperCase() + currentPokemon.names[4].name.substring(1)} #{currentPokemon.id}</Card.Title>
+        <Card.Img id="card_img"variant="top" src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"+pokemon.url.substr(-3).replaceAll("/","")+".png"}/>
         <Card.Body>
-          <Card.Title>{pokemon.name}</Card.Title>
           <Card.Text>
-            {pokemon.name}
-            {pokemon.id}
-            {pokemon.abilities}
           </Card.Text>
-          <Link to="/HomePage/details" state={pokemon}><Button variant="info">Détails</Button></Link>
         </Card.Body>
       </Card>
+      </div>
     );
   }
-export default pokemon ;
+export default Pokemons ;

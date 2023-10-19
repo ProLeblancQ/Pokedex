@@ -3,6 +3,8 @@ import Pokemon from '../Services/Pokemon';
 import Pokemone from '../Components/Pokemon';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 const HomePage = () => {
     const [pokemon, setPokemon] = useState([]);
 
@@ -20,7 +22,7 @@ const HomePage = () => {
         
     }, []);
 
-    return <div className={"d-flex justify-content-center gap-2"}>
+    return <div className={"d-flex flex-wrap justify-content-center gap-2"}>
         {pokemon.map(pokemon =>{
              return <Pokemone pokemon={pokemon}/>
         })}
