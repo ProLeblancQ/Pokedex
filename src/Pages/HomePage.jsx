@@ -11,6 +11,7 @@ const HomePage = () => {
     const fetchPokemon= async () => {
         try {
             const response = await Pokemon.GetPokemon();
+            
             setPokemon(response.data.results)
             
         }catch (e){

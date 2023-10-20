@@ -47,14 +47,12 @@
 }
 
 #NavBar {
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(235, 227, 5) 50%, rgba(2,0,36,1) 100%);
-}
-
-#NavBar {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 8vh;
+  margin-top: 8px;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(235, 227, 5) 50%, rgba(2,0,36,1) 100%);
 }
 
 #NavBar_Titre {
@@ -66,6 +64,11 @@
 .button {
   margin-left: 50px;
   margin-right: 50px;
+}
+
+.dropdown-menu {
+  max-height: px;
+  overflow: auto;
 }
 
 
